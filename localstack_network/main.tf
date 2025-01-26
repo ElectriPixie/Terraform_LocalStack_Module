@@ -2,5 +2,5 @@
 # Define the LocalStack network
 resource "docker_network" "localstack" {
   name = var.network_name
-  driver = "bridge"
+  driver = var.network_driver
 }
