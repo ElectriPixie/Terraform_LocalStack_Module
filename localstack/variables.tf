@@ -1,4 +1,8 @@
-variable "network_name" {}
+variable "network_name" {
+  description = "the name of the docker network to create"
+  type = string
+  default = "localstack"
+}
 
 variable "ports" {
   type = list(map(string))
