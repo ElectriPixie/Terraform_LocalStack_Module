@@ -52,8 +52,8 @@ variable "environment" {
 variable "docker_sock" {
   type = map(string)
   default = {
-    source      = "home/pixie/.docker/desktop/docker.sock"
-    target      = "/var/run/docker.sock"
+    target      = "home/pixie/.docker/desktop/docker.sock"
+    source      = "/var/run/docker.sock"
     type        = "bind"
     mode        = "ro"
   }
