@@ -35,4 +35,9 @@ resource "docker_container" "localstack" {
     for key, value in merge(var.environment, var.environment_root, local.services_map) : 
     "${key}=${value}"
   ])
+  mounts {
+    target = var.docker_sock.target
+    source = var.docker_sock.source
+    type = var.docker_sock.type
+  }
 }
