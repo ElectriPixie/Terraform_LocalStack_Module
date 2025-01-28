@@ -55,6 +55,5 @@ variable "docker_sock" {
     source      = "/var/run/docker.sock"
     target      = "/var/run/docker.sock"
     type        = "bind"
-    mode        = "ro"
   }
 }
