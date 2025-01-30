@@ -1,11 +1,12 @@
 # File: localstack_network.tf
 # Define the LocalStack network
-data "docker_network" "existing_network" {
+data "docker_network" "localstack" {
   name = var.network_name
 }
 
 resource "docker_network" "localstack" {
-  name   = var.network_name
-  driver = var.network_driver
-  id     = try(data.docker_network.existing_network.id, data.docker_network.existing_network.name)
+  name       = var.network_name
+  driver     = var.network_driver
+  id         = try(data.docker_network.localstack.id, var.network_name)
+  depends_on = [data.docker_network.localstack]
 }
