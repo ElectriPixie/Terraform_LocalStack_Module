@@ -5,7 +5,8 @@ data "docker_network" "localstack" {
 }
 
 resource "docker_network" "localstack" {
-  name   = var.network_name
-  driver = var.network_driver
-  count  = data.docker_network.localstack.id == "" ? 1 : 0
+  name       = var.network_name
+  driver     = var.network_driver
+  count      = data.docker_network.localstack.id == "" ? 1 : 0
+  depends_on = [data.docker_network.localstack]
 }
