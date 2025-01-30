@@ -1,5 +1,9 @@
 # Lambda Function
 # This section defines the Lambda function.
+module "wait_for_localstack" {
+  depends_on = [module.localstack]
+  source     = "git::https://github.com/ElectriPixie/Terraform_LocalStack_Module.git//wait_for_localstack"
+}
 
 resource "aws_lambda_function" "lambda" {
   filename      = var.filename
@@ -11,7 +15,8 @@ resource "aws_lambda_function" "lambda" {
 }
 
 resource "aws_iam_role" "lambda_exec" {
-  name = var.role_name
+  depends_on = [module.wait_for_localstack]
+  name       = var.role_name
 
   assume_role_policy = <<EOF
 {
