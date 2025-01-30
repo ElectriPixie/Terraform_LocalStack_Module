@@ -1,8 +1,7 @@
 # Lambda Function
 # This section defines the Lambda function.
 module "wait_for_localstack" {
-  depends_on = [module.localstack]
-  source     = "git::https://github.com/ElectriPixie/Terraform_LocalStack_Module.git//wait_for_localstack"
+  source = "git::https://github.com/ElectriPixie/Terraform_LocalStack_Module.git//wait_for_localstack"
 }
 
 resource "aws_lambda_function" "lambda" {
