@@ -7,13 +7,10 @@ resource "aws_lambda_function" "lambda" {
   handler       = var.handler
   runtime       = var.runtime
   role          = aws_iam_role.lambda_exec.arn
-  #depends_on    = [null_resource.wait_for_lambda]
+  depends_on    = [aws_iam_role.lambda_exec]
 }
 
 resource "aws_iam_role" "lambda_exec" {
-  depends_on = [
-    null_resource.wait_for_lambda,
-  ]
   name = var.role_name
 
   assume_role_policy = <<EOF
