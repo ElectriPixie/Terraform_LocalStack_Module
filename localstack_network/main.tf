@@ -1,12 +1,22 @@
 # File: localstack_network.tf
 # Define the LocalStack network
-data "docker_network" "localstack" {
-  name = var.network_name
+/* resource "null_resource" "ensure_network" {
+  provisioner "local-exec" {
+    command = "docker network ls --quiet --filter name=${var.network_name} || docker network create ${var.network_name}."
+  }
 }
 
 resource "docker_network" "localstack" {
   name       = var.network_name
   driver     = var.network_driver
-  id         = try(data.docker_network.localstack.id, var.network_name)
   depends_on = [data.docker_network.localstack]
+}
+ */
+data "docker_network" "localstack" {
+  name = var.network_name
+}
+
+resource "docker_network" "localstack" {
+  name   = data.docker_network.localstack.name
+  driver = var.network_driver
 }
