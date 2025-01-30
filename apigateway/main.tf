@@ -77,6 +77,7 @@ resource "aws_api_gateway_deployment" "deployment" {
 
 // Allow API Gateway to invoke our lambda function
 resource "aws_lambda_permission" "apigw" {
+  depends_on    = [aws_api_gateway_deployment.deployment]
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
   function_name = var.lambda_function
@@ -85,6 +86,7 @@ resource "aws_lambda_permission" "apigw" {
 }
 
 resource "aws_api_gateway_integration_response" "integration_response" {
+  depends_on  = [aws_api_gateway_integration.integration]
   rest_api_id = aws_api_gateway_rest_api.rest_api.id
   resource_id = aws_api_gateway_resource.resource.id
   http_method = aws_api_gateway_method.method.http_method
