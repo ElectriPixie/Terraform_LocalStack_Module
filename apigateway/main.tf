@@ -1,7 +1,7 @@
 # API Gateway
-module "wait_for_localstack" {
-  source = "git::https://github.com/ElectriPixie/Terraform_LocalStack_Module.git//wait_for_localstack"
-}
+#module "wait_for_localstack" {
+#  source = "git::https://github.com/ElectriPixie/Terraform_LocalStack_Module.git//wait_for_localstack"
+#}
 
 resource "aws_api_gateway_rest_api" "rest_api" {
   depends_on = [module.wait_for_localstack]
@@ -48,6 +48,9 @@ resource "aws_api_gateway_method_response" "method_response" {
   http_method = aws_api_gateway_method.method.http_method
   status_code = "200"
 
+  response_parameters = {
+    "Content-Type" = "application/json"
+  }
 }
 
 data "aws_caller_identity" "current" {
@@ -71,7 +74,6 @@ resource "aws_api_gateway_deployment" "deployment" {
   # This deployment depends on the completion of the integration.
   depends_on = [
     aws_api_gateway_integration.integration,
-    aws_lambda_permission.apigw
   ]
   # The ID of the REST API to associate with this deployment.
   rest_api_id = aws_api_gateway_rest_api.rest_api.id
