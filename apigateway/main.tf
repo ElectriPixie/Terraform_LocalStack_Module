@@ -1,7 +1,7 @@
 # API Gateway
-#module "wait_for_localstack" {
-#  source = "git::https://github.com/ElectriPixie/Terraform_LocalStack_Module.git//wait_for_localstack"
-#}
+module "wait_for_localstack" {
+  source = "git::https://github.com/ElectriPixie/Terraform_LocalStack_Module.git//wait_for_localstack"
+}
 
 resource "aws_api_gateway_rest_api" "rest_api" {
   depends_on = [module.wait_for_localstack]
