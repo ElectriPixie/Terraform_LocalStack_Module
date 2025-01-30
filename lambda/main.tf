@@ -27,5 +27,5 @@ data "aws_iam_policy_document" "assume_role" {
 resource "aws_iam_role" "lambda_exec" {
   depends_on         = [module.wait_for_localstack, data.aws_iam_policy_document.assume_role]
   name               = var.role_name
-  assume_role_policy = data.aws_iam_policy_document.assume_role
+  assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
