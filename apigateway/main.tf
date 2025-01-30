@@ -1,5 +1,10 @@
 # API Gateway
+module "wait_for_localstack" {
+  source = "git::https://github.com/ElectriPixie/Terraform_LocalStack_Module.git//wait_for_localstack"
+}
+
 resource "aws_api_gateway_rest_api" "rest_api" {
+  depends_on = [module.wait_for_localstack]
   # The name of the REST API.
   name        = "rest_api"
   description = "A REST API"
@@ -17,6 +22,7 @@ resource "aws_api_gateway_resource" "resource" {
 resource "aws_api_gateway_method" "method" {
   depends_on = [
     aws_api_gateway_rest_api.rest_api,
+    aws_api_gateway_resource.resource
   ]
   # The ID of the REST API to associate with this method.
   rest_api_id = aws_api_gateway_rest_api.rest_api.id
@@ -34,6 +40,8 @@ resource "aws_api_gateway_method" "method" {
 resource "aws_api_gateway_method_response" "method_response" {
   depends_on = [
     aws_api_gateway_rest_api.rest_api,
+    aws_api_gateway_resource.resource,
+    aws_api_gateway_method.method
   ]
   rest_api_id = aws_api_gateway_rest_api.rest_api.id
   resource_id = aws_api_gateway_resource.resource.id
