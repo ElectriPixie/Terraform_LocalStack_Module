@@ -12,11 +12,11 @@ resource "docker_network" "localstack" {
   depends_on = [data.docker_network.localstack]
 }
  */
-data "docker_network" "localstack" {
+data "docker_network" "localstack_network_exists" {
   name = var.network_name
 }
 
 resource "docker_network" "localstack" {
-  name   = data.docker_network.localstack.name
+  name   = data.docker_network.localstack_network_exists.name
   driver = var.network_driver
 }
