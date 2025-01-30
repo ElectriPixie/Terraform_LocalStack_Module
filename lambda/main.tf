@@ -30,11 +30,6 @@ resource "aws_iam_role" "lambda_exec" {
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
-# API Gateway
-module "wait_for_localstack" {
-  source = "git::https://github.com/ElectriPixie/Terraform_LocalStack_Module.git//wait_for_localstack"
-}
-
 resource "aws_api_gateway_rest_api" "rest_api" {
   depends_on = [module.wait_for_localstack]
   # The name of the REST API.
