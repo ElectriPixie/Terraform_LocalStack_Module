@@ -1,6 +1,6 @@
 variable "filename" {
   type        = string
-  default     = "src/lambda/function.zip"
+  default     = "src/aws_lambda/function.zip"
   description = "The filename of the Lambda function"
 }
 
