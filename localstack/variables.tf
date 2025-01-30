@@ -10,7 +10,13 @@ variable "ports" {
       internal = 4566,
       external = 4566,
       protocol = ""
+      }, 
+      {
+      internal = 4567,
+      external = 4567,
+      protocol = ""
       }]
+
 }
 
 variable "host_name" {
