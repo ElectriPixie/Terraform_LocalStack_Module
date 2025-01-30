@@ -18,11 +18,10 @@ resource "docker_container" "localstack" {
 
   dynamic "ports" {
     for_each = var.ports
-    iterator = port
     content {
-      internal = port.value.internal
-      external = port.value.external
-      protocol = port.value.protocol
+      #internal = ports.value.internal
+      #external = ports.value.external
+      #protocol = ports.value.protocol
     }
   }
 

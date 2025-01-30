@@ -7,16 +7,10 @@ variable "network_name" {
 variable "ports" {
   type = list(map(string))
   default = [{
-      internal = 4568,
-      external = 4568,
-      protocol = "tcp"
-      }, 
-      {
-      internal = 4567,
-      external = 4567,
+      internal = 0,
+      external = 0,
       protocol = "tcp"
       }]
-
 }
 
 variable "host_name" {
