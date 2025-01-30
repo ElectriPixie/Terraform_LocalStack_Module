@@ -1,6 +1,6 @@
 variable "api_path" {
   type        = string
-  default     = "default"
+  default     = "lambda"
   description = "The path of the API"
 }
 

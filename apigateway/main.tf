@@ -65,7 +65,8 @@ resource "aws_api_gateway_integration" "integration" {
 resource "aws_api_gateway_deployment" "deployment" {
   # This deployment depends on the completion of the integration.
   depends_on = [
-    aws_api_gateway_integration.integration
+    aws_api_gateway_integration.integration,
+    aws_lambda_permission.apigw
   ]
   # The ID of the REST API to associate with this deployment.
   rest_api_id = aws_api_gateway_rest_api.rest_api.id
@@ -78,5 +79,4 @@ resource "aws_lambda_permission" "apigw" {
   function_name = var.lambda_function
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${aws_api_gateway_rest_api.rest_api.execution_arn}/*/*/*"
-  #source_arn    = "${aws_api_gateway_rest_api.rest_api.execution_arn}/local/${var.http_method}/${var.api_path}"
 }
