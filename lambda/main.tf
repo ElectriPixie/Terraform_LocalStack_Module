@@ -100,7 +100,6 @@ resource "aws_api_gateway_deployment" "deployment" {
   ]
   # The ID of the REST API to associate with this deployment.
   rest_api_id = aws_api_gateway_rest_api.rest_api.id
-  stage_name  = "prod"
 }
 
 // Allow API Gateway to invoke our lambda function
