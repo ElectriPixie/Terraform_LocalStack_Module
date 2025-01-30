@@ -77,5 +77,6 @@ resource "aws_lambda_permission" "apigw" {
   action        = "lambda:InvokeFunction"
   function_name = var.lambda_function
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "${aws_api_gateway_rest_api.rest_api.execution_arn}/local/${var.http_method}/${var.api_path}"
+  source_arn    = "${aws_api_gateway_rest_api.rest_api.execution_arn}/*/*/*"
+  #source_arn    = "${aws_api_gateway_rest_api.rest_api.execution_arn}/local/${var.http_method}/${var.api_path}"
 }
