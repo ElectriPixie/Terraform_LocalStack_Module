@@ -6,7 +6,7 @@ variable "api_path" {
 
 variable "http_method" {
   type        = string
-  default     = "POST"
+  default     = "GET"
   description = "The HTTP method for the API"
 }
 
