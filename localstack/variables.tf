@@ -9,12 +9,12 @@ variable "ports" {
   default = [{
       internal = 4566,
       external = 4566,
-      protocol = ""
+      protocol = "tcp"
       }, 
       {
       internal = 4567,
       external = 4567,
-      protocol = ""
+      protocol = "tcp"
       }]
 
 }
