@@ -4,7 +4,7 @@ variable "filename" {
   description = "The filename of the Lambda function"
 }
 
-variable "function_name" {
+variable "lambda_function" {
   type        = string
   default     = "lambda"
   description = "The name of the Lambda function"
@@ -24,6 +24,6 @@ variable "runtime" {
 
 variable "role_name" {
   type        = string
-  default     = "lambda_exec_role"
+  default     = "lambda_exec"
   description = "The name of the IAM role"
 }
