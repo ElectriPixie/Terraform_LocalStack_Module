@@ -1,5 +1,5 @@
 resource "null_resource" "wait_for_localstack" {
-  depends_on = [module.localstack, null_resource.create_update_venv]
+  #depends_on = [module.localstack, null_resource.create_update_venv]
   provisioner "local-exec" {
     command     = <<EOT
       source localstack-venv/bin/activate

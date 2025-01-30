@@ -1,13 +1,13 @@
 # Lambda Function
 # This section defines the Lambda function.
 
-resource "aws_lambda_function" "hello_world" {
+resource "aws_lambda_function" "lambda" {
   filename      = var.filename
   function_name = var.function_name
   handler       = var.handler
   runtime       = var.runtime
   role          = aws_iam_role.lambda_exec.arn
-  depends_on    = [null_resource.wait_for_lambda]
+  #depends_on    = [null_resource.wait_for_lambda]
 }
 
 resource "aws_iam_role" "lambda_exec" {
