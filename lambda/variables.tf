@@ -1,12 +1,12 @@
 variable "filename" {
   type        = string
-  default     = "src/hello_world/function.zip"
+  default     = "src/lambda/function.zip"
   description = "The filename of the Lambda function"
 }
 
 variable "function_name" {
   type        = string
-  default     = "hello_world"
+  default     = "lambda"
   description = "The name of the Lambda function"
 }
 
