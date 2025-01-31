@@ -15,3 +15,9 @@ variable "lambda_function" {
   default     = "lambda"
   description = "The name of the Lambda function"
 }
+
+variable "region" {
+  type        = string
+  default     = "us-east-1"
+  description = "The default region"
+}
